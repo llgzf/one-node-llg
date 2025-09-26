@@ -6,7 +6,8 @@ UUID="${uuid:-$(uuidgen)}"  # 使用 argosbx.sh 的 uuid，未设置则生成
 ARGO_TOKEN="${ARGO_TOKEN:-}"  # 对齐 argosbx.sh
 ARGO_DOMAIN="${ARGO_DOMAIN:-}"  # 可选的 Argo 域名
 HOME="${HOME:-/home/user}"  # 确保 HOME 已设置
-WORKSPACE_DIR="${HOME}/tw"  # 与 app.js 的 projectDir 对齐
+WORKSPACE_DIR="${HOME}/app0926"  # 与 app.js 的 projectDir 对齐
+PORT_VM_WS="${port_vm_ws:-43301}"  # 对齐 argosbx.sh 的 port_vm_ws，默认为 43301
 
 # 1. 初始化目录结构，与 argosbx.sh 一致
 mkdir -p "$HOME/agsbx/xray"
@@ -47,7 +48,6 @@ else
   echo "vless://$UUID@example.domain.com:443?encryption=none&security=tls&alpn=http%2F1.1&fp=chrome&type=xhttp&path=%2F&mode=auto#idx-xhttp"
 fi
 if [ -n "$port_vm_ws" ]; then
-  echo "vmess://$(echo -n '{\"v\":\"2\",\"ps\":\"idx-vmess-1\",\"add\":\"$ARGO_DOMAIN\",\"port\":\"${port_vm_ws:-43301}\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"\",\"path\":\"/$UUID-vm?ed=2048\",\"tls\":\"\"}' | base64 -w0)#idx-vmess-1"
-  echo "vmess://$(echo -n '{\"v\":\"2\",\"ps\":\"idx-vmess-2\",\"add\":\"$ARGO_DOMAIN\",\"port\":\"${port_vm_ws:-43302}\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"\",\"path\":\"/$UUID-vm?ed=2048\",\"tls\":\"\"}' | base64 -w0)#idx-vmess-2"
+  echo "vmess://$(echo -n '{\"v\":\"2\",\"ps\":\"idx-vmess\",\"add\":\"$ARGO_DOMAIN\",\"port\":\"$PORT_VM_WS\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"\",\"path\":\"/$UUID-vm?ed=2048\",\"tls\":\"\"}' | base64 -w0)#idx-vmess"
 fi
 echo "---------------------------------------------------------------"
