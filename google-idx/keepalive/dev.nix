@@ -49,9 +49,9 @@
       onStart = {
         # Example: start a background task to watch and re-build backend code
         # watch-backend = "npm run watch-backend";
-        xray = "/home/user/tw/app/xray/startup.sh";
-        idx = "/home/user/tw/app/idx-keepalive/startup.sh";
-        argo = "/home/user/tw/app/argo/startup.sh";  # 添加 Argo 开机自启
+        xray = "/home/user/app0926/app/xray/startup.sh";
+        idx = "/home/user/app0926/app/idx-keepalive/startup.sh";
+        argo = "/home/user/app0926/app/argo/startup.sh";  # 添加 Argo 开机自启
       };
     };
   };
