@@ -1,22 +1,29 @@
 #!/usr/bin/env sh
 
-# 1. pull docker image
+# 环境变量
+HOME="${HOME:-/home/user}"
+WORKSPACE_DIR="${HOME}/tw"
+
+# 1. 拉取 Docker 镜像
 docker pull jlesage/firefox
 
-# 2. init directory
-mkdir -p app/firefox/idx
-mkdir -p app/idx-keepalive
-cd app/idx-keepalive
+# 2. 初始化目录
+mkdir -p "$WORKSPACE_DIR/app/firefox/idx"
+mkdir -p "$HOME/agsbx/idx-keepalive"
+cd "$HOME/agsbx/idx-keepalive"
 
-# 3. download keepalive scripts & install dependencies
-wget https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/app.js
-wget https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/package.json
+# 3. 下载保持活跃脚本并安装依赖
+wget -O app.js https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/app.js
+wget -O package.json https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/package.json
 npm install
 
-# 4. create startup.sh
-wget https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/startup.sh
-sed -i 's#$PWD#'$PWD'#g' startup.sh
+# 4. 创建 startup.sh
+cat > startup.sh <<EOF
+#!/usr/bin/env sh
+cd $HOME/agsbx/idx-keepalive
+nohup npm run start 1>idx-keepalive.log 2>&1 &
+EOF
 chmod +x startup.sh
 
-# 5. return main directory
+# 5. 返回主目录
 cd -
