@@ -19,7 +19,7 @@ rm -f Xray-linux-64.zip
 chmod +x xray
 
 # 3. 添加配置文件
-wget -O config.json https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/xray-config-template.json
+wget -O config.json https://raw.githubusercontent.com/llgzf/one-node-llg/refs/heads/main/google-idx/xray-config-template.json
 sed -i "s/\$PORT/$PORT/g" config.json
 sed -i "s/\$UUID/$UUID/g" config.json
 
@@ -33,7 +33,7 @@ chmod +x startup.sh
 
 # 5. 安装 Argo 服务
 if [ -n "$ARGO_TOKEN" ]; then
-  curl -sSL https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/argo/install.sh | sh
+  curl -sSL https://raw.githubusercontent.com/llgzf/one-node-llg/refs/heads/main/google-idx/argo/install.sh | sh
 fi
 
 # 6. 启动 Xray
