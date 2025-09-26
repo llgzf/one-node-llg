@@ -3,7 +3,7 @@ const axios = require('axios')
 
 // ============================================================
 // Remote
-const targetUrl = process.env.ARGO_DOMAIN ? `https://${process.env.ARGO_DOMAIN}` : 'https://8080-firebase-us-1747877258236.cluster-2xfkbshw5rfguuk5qupw267afs.cloudworkstations.dev'
+const targetUrl = process.env.ARGO_DOMAIN ? `https://${process.env.ARGO_DOMAIN}:${process.env.PORT_VM_WS || 43301}` : 'https://8080-firebase-us-1747877258236.cluster-2xfkbshw5rfguuk5qupw267afs.cloudworkstations.dev'
 const ffOpenUrl = 'https://idx.google.com/us-51072006'
 // Local
 const projectDir = '/home/user/app0926'
