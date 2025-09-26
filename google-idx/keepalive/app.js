@@ -6,7 +6,7 @@ const axios = require('axios')
 const targetUrl = process.env.ARGO_DOMAIN ? `https://${process.env.ARGO_DOMAIN}` : 'https://8080-firebase-us-1747877258236.cluster-2xfkbshw5rfguuk5qupw267afs.cloudworkstations.dev'
 const ffOpenUrl = 'https://idx.google.com/us-51072006'
 // Local
-const projectDir = '/home/user/tw'
+const projectDir = '/home/user/app0926'
 const vncPassword = 'vevc.firefox.VNC.pwd'
 const containerName = 'idx'
 // ============================================================
