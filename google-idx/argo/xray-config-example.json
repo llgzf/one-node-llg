@@ -46,27 +46,6 @@
           "path": "/${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}-vm?ed=2048"
         }
       }
-    },
-    {
-      "listen": "0.0.0.0",
-      "port": "${port_vm_ws:-43302}",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}",
-            "alterId": 0
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "wsSettings": {
-          "host": "${ARGO_DOMAIN:-}",
-          "path": "/${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}-vm?ed=2048"
-        }
-      }
     }
   ],
   "outbounds": [
