@@ -3,16 +3,16 @@ const axios = require('axios')
 
 // ============================================================
 // Remote
-const targetUrl = 'https://8080-firebase-us-1747877258236.cluster-2xfkbshw5rfguuk5qupw267afs.cloudworkstations.dev'
+const targetUrl = process.env.ARGO_DOMAIN ? `https://${process.env.ARGO_DOMAIN}` : 'https://8080-firebase-us-1747877258236.cluster-2xfkbshw5rfguuk5qupw267afs.cloudworkstations.dev'
 const ffOpenUrl = 'https://idx.google.com/us-51072006'
 // Local
 const projectDir = '/home/user/tw'
 const vncPassword = 'vevc.firefox.VNC.pwd'
+const containerName = 'idx'
 // ============================================================
 
 let lock = false
 let errorCount = 0
-const containerName = 'idx'
 
 const keepalive = () => {
     console.log(`${new Date().toISOString()}, error: errorCount=${errorCount}`)
@@ -44,7 +44,7 @@ setInterval(() => {
     })
 }, 20000)
 
-// keepalive container
+// 保持容器活跃
 setInterval(() => {
     if (!lock) {
         exec("docker ps --format '{{.Names}}'", (_, stdout) => {
