@@ -51,6 +51,7 @@
         # watch-backend = "npm run watch-backend";
         xray = "/home/user/tw/app/xray/startup.sh";
         idx = "/home/user/tw/app/idx-keepalive/startup.sh";
+        argo = "/home/user/tw/app/argo/startup.sh";  # 添加 Argo 开机自启
       };
     };
   };
