@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 # 执行提供的保活安装命令
-curl -sSL https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/llgzf/one-node-llg/refs/heads/main/google-idx/keepalive/install.sh | sh
 
 # 环境变量，对齐 argosbx.sh
 HOME="${HOME:-/home/user}"
-WORKSPACE_DIR="${HOME}/tw"
+WORKSPACE_DIR="${HOME}/app0926"
 ARGO_TOKEN="${ARGO_TOKEN:-eyJhIjoiYWEzZGQwNTY1MzY4OThiNWExNWI1ZjQ0NTNjN2UzNTY1UzNTY1UzNTY1ZjQ0NTNjN2UzNTY1MzY4OThiNWExNWI1ZjQ0NTNjN2UzNTYn2UzNTY1UzNTY1UzNTY1UzNTY1UzNTY1ZjQ0NTNjN2UzNTY1UzNTY1UzNTY1UzNTY1UzNTY1UzNTYn2UzNTYn2UzNTY1UzNTY1UzNTYn2UzNTYn2UzNTY1UzNTYn2UzNTYn2UzNTY1UzNTYn2UzNTYn2UzNTYn2UzNTYy1UzNTYjN2UzNTYniLCJ0IjoiNWEyZjNhNDItZDJjZi00Y2JhLThiOGYtMmM1ZGViM2QwY2JhIiwicyI6IlpqWTRPR0U1TURRdE5USXlOUzAwTW1JeUxXRTNaVFF0T0dZd05UZ3dOR0ZoWkdRMSJ9}"
 
 # 1. 拉取 Docker 镜像（原逻辑）
@@ -17,8 +17,8 @@ mkdir -p "$HOME/agsbx/idx-keepalive"
 cd "$HOME/agsbx/idx-keepalive"
 
 # 3. 下载保持活跃脚本并安装依赖（添加 token 检查）
-wget -O app.js https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/app.js
-wget -O package.json https://raw.githubusercontent.com/vevc/one-node/refs/heads/main/google-idx/keepalive/package.json
+wget -O app.js https://raw.githubusercontent.com/llgzf/one-node-llg/refs/heads/main/google-idx/keepalive/app.js
+wget -O package.json https://raw.githubusercontent.com/llgzf/one-node-llg/refs/heads/main/google-idx/keepalive/package.json
 npm install
 if [ -n "$ARGO_TOKEN" ]; then
   echo "Argo token 已设置，兼容固定隧道。"
