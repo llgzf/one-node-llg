@@ -4,8 +4,8 @@
   },
   "inbounds": [
     {
-      "listen": null,
-      "port": 8080,
+      "listen": "0.0.0.0",
+      "port": "${port_xh:-8080}",
       "protocol": "vless",
       "settings": {
         "decryption": "none",
@@ -13,23 +13,79 @@
           {
             "email": "idx-xhttp",
             "flow": "",
-            "id": "2584b733-9095-4bec-a7d5-62b473540f7a"
+            "id": "${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}"
           }
         ]
       },
       "streamSettings": {
         "network": "xhttp",
         "xhttpSettings": {
-          "host": "",
+          "host": "${ARGO_DOMAIN:-}",
           "mode": "auto",
           "path": "/"
+        }
+      }
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": "${port_vm_ws:-43301}",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "host": "${ARGO_DOMAIN:-}",
+          "path": "/${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}-vm?ed=2048"
+        }
+      }
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": "${port_vm_ws:-43302}",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "host": "${ARGO_DOMAIN:-}",
+          "path": "/${uuid:-7f2d06c0-b7e8-4746-8fef-083a995e896a}-vm?ed=2048"
         }
       }
     }
   ],
   "outbounds": [
     {
-      "protocol": "freedom"
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "blocked"
     }
-  ]
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
 }
